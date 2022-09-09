@@ -7,10 +7,10 @@ resource "aws_instance" "terraform_ec2" {
   tags      = local.tags
   user_data = <<-EOF
   #!/bin/bash
-  sudo apt update
-  sudo apt install -y apache2
-  sudo systemctl status apache2
-  sudo systemctl start apache2
+  sudo yum update -y
+  sudo yum install -y httpd
+  sudo systemctl status httpd
+  sudo systemctl start httpd
   sudo chown -R $USER:$USER /var/www/html
   sudo echo "<html><body><h1>CloudOps</h1></body></html>" > /var/www/html/index.html
   EOF
